@@ -1,0 +1,354 @@
+   
+<!--original donut graph at  https://medium.com/@heyoka/scratch-made-svg-donut-pie-charts-in-html5-2c587e935d72 -->
+
+ 
+
+<style>
+
+.chart-text {
+
+ 
+
+  fill : grey;
+
+  background-color: black;
+
+  -moz-transform: translateY(0.25em);
+
+  -ms-transform: translateY(0.25em);
+
+  -webkit-transform: translateY(0.25em);
+
+  transform: translateY(0.25em);
+
+}
+
+.chart-number {
+
+  font-size: 0.6em;
+
+ 
+
+  line-height: 1;
+
+  text-anchor: middle;
+
+  -moz-transform: translateY(-0.25em);
+
+  -ms-transform: translateY(-0.25em);
+
+  -webkit-transform: translateY(-0.25em);
+
+  transform: translateY(-0.25em);
+
+}
+
+.chart-label {
+
+ 
+
+  font-size: 0.2em;
+
+  text-transform: uppercase;
+
+  text-anchor: middle;
+
+  -moz-transform: translateY(0.7em);
+
+  -ms-transform: translateY(0.7em);
+
+  -webkit-transform: translateY(0.7em);
+
+  transform: translateY(0.7em);
+
+}
+
+figure {
+
+  display: flex;
+
+  color: grey ;
+
+  justify-content: space-around;
+
+  flex-direction: column;
+
+  margin-left: -15px;
+
+  margin-right: -15px;
+
+  background-color: black;
+
+}
+
+@media (min-width: 768px) {
+
+  figure {
+
+    flex-direction: row;
+
+  }
+
+}
+
+.figure-content,
+
+.figure-key {
+
+ 
+
+  flex: 1;
+
+  padding-left: 15px;
+
+  padding-right: 15px;
+
+  align-self: center;
+
+}
+
+.figure-content svg {
+
+  height: auto;
+
+}
+
+.figure-key {
+
+  min-width: calc(8 / 12);
+
+}
+
+.figure-key [class*="shape-"] {
+
+  margin-right: 6px;
+
+}
+
+.figure-key-list {
+
+  font-size: 8em;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+
+}
+
+.figure-key-list li {
+
+  fill: grey ;
+
+  margin: 0 0 8px;
+
+  padding: 0;
+
+}
+
+.shape-circle {
+
+  display: inline-block;
+
+  vertical-align: middle;
+
+  width: 32px;
+
+  height: 32px;
+
+  -webkit-border-radius: 50%;
+
+     -moz-border-radius: 50%;
+
+          border-radius: 50%;
+
+}
+
+.shape-fuschia {
+
+  background-color: #ce4b99;
+
+}
+
+.shape-lemon-lime {
+
+  background-color: #b1c94e;
+
+}
+
+.shape-blue {
+
+  background-color: #377bbc;
+
+}
+
+.sr-only {
+
+  position: absolute;
+
+  fill: grey ;
+
+  width: 1px;
+
+  height: 1px;
+
+  margin: -1px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  clip: rect(0,0,0,0);
+
+  border: 0;
+
+}
+
+</style>
+
+ 
+
+<figure>
+
+  <div class="figure-content">
+
+    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut" aria-labelledby="beers-title beers-desc" role="img">
+
+      <title id="beers-title">Pump Age</title>
+
+      <desc id="beers-desc">Donut chart showing Pump Age</desc>
+
+<!-- 'Removing donout hole'      <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff" role="presentation"></circle>
+
+--> 
+
+ 
+
+<!-- This is the line to be filled in -->
+
+                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="5" role="presentation"></circle>
+
+ 
+
+<!-- This is the Green line Day 1 -->
+
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#b1c94e" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="25" aria-labelledby="donut-segment-1-title donut-segment-1-desc">
+
+        <title id="donut-segment-1-title">Day1</title>
+
+        <desc id="donut-segment-1-desc">Day 1 used</desc>
+
+      </circle>
+
+                 
+
+<!-- This is the line to be filled in -->          
+
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#F7DC6F" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="92">
+
+        <title id="donut-segment-2-title">Imperial India Pale Ales</title>
+
+        <desc id="donut-segment-2-desc">Green chart segment spanning 20% of the whole, which is 2 Imperial India Pale Ales out of 10 total.</desc>
+
+      </circle>
+
+                 
+
+<!-- This is the line to be filled in -->          
+
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#EC7063" stroke-width="4" stroke-dasharray="34 66" stroke-dashoffset="59">
+
+        <title id="donut-segment-3-title">Russian Imperial Stouts</title>
+
+        <desc id="donut-segment-3-desc">Blue chart segment spanning 3% of the whole, which is 3 Russian Imperial Stouts out of 10 total.</desc>
+
+      </circle>
+
+                 
+
+<!-- This is the line to be filled in -->          
+
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="black" stroke-width="2" stroke-dasharray="34 66" stroke-dashoffset="25">
+
+        <title id="donut-segment-3-title">Russian Imperial Stouts</title>
+
+        <desc id="donut-segment-3-desc">the amount of time used</desc>
+
+      </circle>         
+
+                  
+
+      <!-- unused 10% -->
+
+      <g class="chart-text">
+
+        <text x="50%" y="50%" class="chart-number">
+
+          10
+
+        </text>
+
+        <text x="50%" y="50%" class="chart-label">
+
+          Hours
+
+        </text>
+
+      </g>
+
+    </svg>
+
+  </div>
+
+ 
+
+  
+
+  
+
+  <figcaption class="figure-key">
+
+    <p class="sr-only">Donut chart .</p>
+
+ 
+
+    <ul class="figure-key-list" aria-hidden="true" role="presentation">
+
+      <li>
+
+                  <span class="shape-circle shape-fuschia"></span>  <b>BG </b> &#8657; &#8659; &#8594; &#8593; &#8595; &#8599;  &#8600;
+
+                  </li>
+
+                  <li>
+
+                  <span></span> <strike><b>Time</b></strike>
+
+      </li>
+
+                  <!-- <li>
+
+        <span class="shape-circle shape-fuschia"></span> Belgian Quadrupels (4)
+
+      </li>
+
+      <li>
+
+        <span class="shape-circle shape-lemon-lime"></span> Imperial India Pale Ales (2)
+
+      </li>
+
+      <li>
+
+        <span class="shape-circle shape-blue"></span> Russian Imperial Stouts (3)
+
+      </li> -->
+
+    </ul>
+
+  </figcaption>
+
+</figure>
+
+<body style="background-color:grey;">
