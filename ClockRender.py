@@ -37,78 +37,76 @@ url2 = "https://tnf.ns.10be.de:6836/api/v1/treatments.json"
  
 
  
+req = urllib.request.Request(url1)
+try: urllib.request.urlopen(req)
+except urllib.error.URLError as e:
+    print(e.reason)
+    arrow = "&#8212;"
+    BG_textStyleStart = "<b><strike>"
+    BG_textStyleEnd = "</b></strike>"
 
-with urllib.request.urlopen(url1) as url:
-
-    data = json.loads(url.read().decode())
-
-#    print("current BG")
-
-#    print(data[0].get("sgv"))
-
-#    print(data[0].get("dateString"))
-
-#    print(data[0].get("direction"))
-
-    lastsgvtime = datetime.datetime.strptime( data[0].get("dateString") ,'%Y-%m-%dT%H:%M:%S.%fZ')
-
- 
-
-trend = data[0].get("direction")
-
- 
-
-if trend == "SingleUp" :
-
-                arrow = "&#8593;"
-
-elif trend == "Flat" :
-
-                arrow ="&#8594;"
-
-elif trend =="FortyFiveUp" :
-
-                arrow ="&#8599;"
-
-elif trend =="FortyFiveDown" :
-
-                arrow ="&#8600;"
-
-elif trend =="SingleDown" :
-
-                arrow ="&#8595;"
-
-elif trend =="DoubleUp" :
-
-                arrow ="&#8657;"
-
-elif trend =="DoubleDown" :
-
-                arrow ="&#8659;"
-
-else :
-
-                arrow = "&#8212;"
-
- 
-
- 
-
- 
-
-   
-
+else:    
     
-
-with urllib.request.urlopen(url2) as url:
-
-    data2 = json.loads(url.read().decode())
-
-    pump_index = next((index for (index, d) in enumerate(data2) if d["eventType"] == "Resume Pump"), None)
-
-#    print(pump_index)
-
-    pumpdate = datetime.datetime.strptime( data2[pump_index].get("timestamp"),'%Y-%m-%dT%H:%M:%SZ')
+    with urllib.request.urlopen(url1) as url:
+    
+        data = json.loads(url.read().decode())
+    
+    #    print("current BG")
+    
+    #    print(data[0].get("sgv"))
+    
+    #    print(data[0].get("dateString"))
+    
+    #    print(data[0].get("direction"))
+    
+        lastsgvtime = datetime.datetime.strptime( data[0].get("dateString") ,'%Y-%m-%dT%H:%M:%S.%fZ')
+    
+    trend = data[0].get("direction")
+    
+     
+    
+    if trend == "SingleUp" :
+    
+                    arrow = "&#8593;"
+    
+    elif trend == "Flat" :
+    
+                    arrow ="&#8594;"
+    
+    elif trend =="FortyFiveUp" :
+    
+                    arrow ="&#8599;"
+    
+    elif trend =="FortyFiveDown" :
+    
+                    arrow ="&#8600;"
+    
+    elif trend =="SingleDown" :
+    
+                    arrow ="&#8595;"
+    
+    elif trend =="DoubleUp" :
+    
+                    arrow ="&#8657;"
+    
+    elif trend =="DoubleDown" :
+    
+                    arrow ="&#8659;"
+    
+    else :
+    
+                    arrow = "&#8212;"
+    
+     
+    with urllib.request.urlopen(url2) as url:
+    
+        data2 = json.loads(url.read().decode())
+    
+        pump_index = next((index for (index, d) in enumerate(data2) if d["eventType"] == "Resume Pump"), None)
+    
+    #    print(pump_index)
+    
+        pumpdate = datetime.datetime.strptime( data2[pump_index].get("timestamp"),'%Y-%m-%dT%H:%M:%SZ')
 
    
 
