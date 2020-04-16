@@ -15,9 +15,8 @@ this uses the following variables from a Python scrit using jinja2
                 Circle_empty = pumpleft    ,
 
                 hours = hours   ,
-				
-				CGMbar = CGMbar    ,
-				CGMbarcolor = CGMbarcolor
+
+
 
 -->
 
@@ -81,18 +80,6 @@ this uses the following variables from a Python scrit using jinja2
 
   transform: translateY(0.7em);
 
-}
-
-
-.chart-day {
-
- 
-
-  font-size: 0.15em;
-
-  text-transform: uppercase;
-
-  text-anchor: left;
 }
 
 figure {
@@ -239,61 +226,33 @@ figure {
 
 </style>
 
-<html>
-    <head>
-        <title>{{recent_BG}} PiClock</title>
-    </head>
-</html>
+ 
+
 <figure>
 
   <div class="figure-content">
 
     <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut" aria-labelledby="beers-title beers-desc" role="img">
 
-      <title id="PodLife">Pump Age</title>
+      <title id="beers-title">Pump Age</title>
 
-      <desc id="Pod_Life">Donut chart showing Pump Age</desc>
+      <desc id="beers-desc">Donut chart showing Pump Age</desc>
 
+<!-- 'Removing donout hole'      <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff" role="presentation"></circle>
 
-<rect x="0" y= "0" width="42" height="6" style="fill:#d2d3d4;stroke-width:0;stroke:rgb(150,0,0)" />
+--> 
 
-                 
-
-                  <rect x="1" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.1" />
-
-                  <rect x="5" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.15" />
-
-                  <rect x="9" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.2" />
-
-                  <rect x="13" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.25" />
-
-                  <rect x="17" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.3" />
-
-                  <rect x="21" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.35" />
-
-                  <rect x="25" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.4" />
-
-                  <rect x="29" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.5" />
-
-                  <rect x="33" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:0.6" />
-
-                  <rect x="37" y= "1" width="4" height="4" style="fill:red;stroke-width:0;stroke:black; opacity:1" />
-
-<!-- This is where life is drawn -->
-                 
-
-                  <rect x="1" y= "2" width="{{CGMbar}}" height="2" style="fill:{{CGMbarcolor}};stroke-width:0;stroke:black" />
  
 
 <!-- This is the line to be filled in -->
 
-                  <circle class="donut-ring" cx="21" cy="25" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="5" role="presentation"></circle>
+                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="5" role="presentation"></circle>
 
  
 
 <!-- This is the Green line Day 1 -->
 
-      <circle class="donut-segment" cx="21" cy="25" r="15.91549430918954" fill="transparent" stroke="#b1c94e" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="25" aria-labelledby="donut-segment-1-title donut-segment-1-desc">
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#b1c94e" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="25" aria-labelledby="donut-segment-1-title donut-segment-1-desc">
 
         <title id="donut-segment-1-title">Day 1</title>
 
@@ -303,9 +262,9 @@ figure {
 
                  
 
-<!-- This is Day 2 -->          
+<!-- This is the line to be filled in -->          
 
-      <circle class="donut-segment" cx="21" cy="25" r="15.91549430918954" fill="transparent" stroke="#F7DC6F" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="92">
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#F7DC6F" stroke-width="4" stroke-dasharray="33 67" stroke-dashoffset="92">
 
         <title id="donut-segment-2-title">Day 2</title>
 
@@ -315,9 +274,9 @@ figure {
 
                  
 
-<!-- This is day 3 -->          
+<!-- This is the line to be filled in -->          
 
-      <circle class="donut-segment" cx="21" cy="25" r="15.91549430918954" fill="transparent" stroke="#EC7063" stroke-width="4" stroke-dasharray="34 66" stroke-dashoffset="59">
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#EC7063" stroke-width="4" stroke-dasharray="34 66" stroke-dashoffset="59">
 
         <title id="donut-segment-3-title">Day 3</title>
 
@@ -327,9 +286,9 @@ figure {
 
                  
 
-<!-- This is life left -->          
+<!-- This is the line to be filled in -->          
 
-      <circle class="donut-segment" cx="21" cy="25" r="15.91549430918954" fill="transparent" stroke="black" stroke-width="2" stroke-dasharray="{{Circle_colored}} {{Circle_empty}}" stroke-dashoffset="25">
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="black" stroke-width="2" stroke-dasharray="{{Circle_colored}} {{Circle_empty}}" stroke-dashoffset="25">
 
         <title id="donut-segment-3-title">Hours Used</title>
 

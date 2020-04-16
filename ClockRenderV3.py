@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-Version 2 
+Version 3
+
+Version 3 change - adding in CGM monitoring
 Spyder Editor
 This is a Python3 set of code 
  - Why - because the Web Help I found was 3
@@ -35,8 +37,8 @@ from jinja2 import Environment, FileSystemLoader
 url1 = "https://tnf.ns.10be.de:6836/api/v1/entries.json"
 url2 = "https://tnf.ns.10be.de:6836/api/v1/treatments.json"
 
-UTCoffset = 4 
-
+UTCoffset = 5 
+# The UTC is 5 for winter and 4 for Summer in Boston
  
 req = urllib.request.Request(url1)
 try: urllib.request.urlopen(req)
@@ -86,9 +88,29 @@ else:
     pump_index = next((index for (index, d) in enumerate(data2) if d["eventType"] == "Resume Pump"), None) 
     #    print(pump_index) 
     pumpdate = datetime.datetime.strptime( data2[pump_index].get("timestamp"),'%Y-%m-%dT%H:%M:%SZ')
-#    print(pumpdate)
+    #print(pumpdate)
 
-   
+    	
+	#looking for CGM Start Date
+    CGM_index = next((index for (index, d) in enumerate(data2) if d["eventType"] == "Sensor Start"), None) 
+    print(CGM_index)
+    
+    if CGM_index  :  #this is if the CGM sensor start is in the JSON
+            print(data2[CGM_index].get("created_at"))
+            with open("/home/pi/nightscout/CGMDate.txt", "w") as file:
+                  file.seek(0)
+                  file.write(data2[CGM_index].get("created_at"))
+                  file.truncate()
+            
+            CGMdate = datetime.datetime.strptime( data2[CGM_index].get("created_at"),'%Y-%m-%dT%H:%M:%S.%fZ')
+    else :   # here I need to read the last CGM start from a file
+            with open("/home/pi/nightscout/CGMDate.txt", "r") as file:
+                  CGMDate_text = file.read()
+            #print(CGMDate_text)
+            CGMdate = datetime.datetime.strptime(CGMDate_text,'%Y-%m-%dT%H:%M:%S.%fZ')
+            #print(CGMdate)
+    
+	
     now = datetime.datetime.utcnow()
     nowlocal = now - timedelta(hours=UTCoffset, minutes=0)
     time = nowlocal.strftime("%H:%M")
@@ -115,6 +137,22 @@ else:
     
     hoursleft = 72 - hours
 
+
+    diffCGM = now - CGMdate
+    days, seconds = diffCGM.days, diffCGM.seconds
+    hours = round((days * 24 + seconds / 3600),0)
+    CGMlifepercentage = round((hours/(240))*100,0)
+    CGMbar = int ( round( (CGMlifepercentage/100) *  40, 0) )
+    if CGMbar > 40:
+       CGMbar = 40	
+	
+    if CGMbar > 34 :
+      CGMbarcolor = "yellow"
+    else :
+      CGMbarcolor = "grey"
+    #print( CGMbar)
+
+
 #print(hours)
 #print(pumplifepercentage, "percentage of pump used")
 #----------------------------end of JSON data analysis
@@ -133,6 +171,8 @@ output = template.render(
                 Circle_empty = pumpleft    ,
                 hours = hoursleft   ,   
                 time = time ,
+                CGMbar = CGMbar  , 
+                CGMbarcolor = CGMbarcolor
                 )
 
 with open("/var/www/html/index.html", "w") as file:
